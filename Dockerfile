@@ -1,6 +1,6 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
-ENV PYTHON_VERSION 3.9.9
+ENV PYTHON_VERSION 3.10.6
 ENV PYTHON_ROOT /tmp/Python/python-$PYTHON_VERSION
 ENV PATH $PYTHON_ROOT/bin:$PATH
 ENV PYENV_ROOT /tmp/.pyenv
@@ -24,6 +24,9 @@ RUN apt-get update \
     libncursesw5-dev \
     libffi-dev \
     liblzma-dev \
+    libopencv-dev \
+    opencv-data \
+    x11-apps \
     vim \
     ssh \
     wget \
@@ -32,6 +35,8 @@ RUN apt-get update \
     git \
     && apt clean \
     && rm -rf /var/lib/apt/lists/*
+
+CMD ["xeyes"]
 
 # # Python環境構築
 RUN git clone https://github.com/pyenv/pyenv.git $PYENV_ROOT
